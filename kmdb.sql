@@ -186,14 +186,14 @@ ON movies.studio_id = studios.id;
 
 -- The SQL statement for the cast output (MOVIE    ACTOR    CHARACTER)
 -- TODO!
-SELECT movies.title, actors.actor_name
+SELECT movies.title, actors.actor_name, characters.character_name
 FROM movies
-INNER JOIN troupe
+INNER join troupe
 ON movies.id = troupe.movie_id
 INNER join actors
-ON actors.id = troupe.actor_id;
--- INNER join characters
--- ON characters.id = actors.character_id;
+ON actors.id = troupe.actor_id
+INNER join characters
+ON characters.id = actors.character_id;
 
 -- Submission
 -- 

@@ -54,7 +54,7 @@ CREATE TABLE Movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   Title TEXT,
   Year TEXT,
-  MPAA Rating TEXT,
+  MPAA_Rating TEXT,
   Studio TEXT
 );
 
@@ -65,14 +65,21 @@ CREATE TABLE Movies (
 INSERT INTO Movies (
     "Title",
     "Year",
-    "MPAA Rating",
+    "MPAA_Rating",
     "Studio"
 ) VALUES (
     "Batman Begins",
     "2005",
     "PG-13",
-    "Warner Bros."
-)
+    "Warner Bros."),
+(   "The Dark Knight",
+    "2008",
+    "PG-13",
+    "Warner Bros."),
+(   "The Dark Knight Rises",
+    "2012",
+    "PG-13",
+    "Warner Bros.");
 
 
 -- 4. "The report" (SELECT statements) - 6 points

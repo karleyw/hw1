@@ -3,8 +3,7 @@
 -- The end product will be a report that prints the movies and the 
 -- top-billed cast for each movie in the database.
 
--- Requirements/assumptions
---
+-- Requirements/assumptions:
 -- - There will only be three movies in the database – the three films
 --   that make up Christopher Nolan's Batman trilogy.
 -- - Movie data includes the movie title, year released, MPAA rating,
@@ -14,8 +13,7 @@
 -- - An actor can be in multiple movies.
 -- - Everything you need to do in this assignment is marked with TODO!
 
--- User stories
---
+-- User stories:
 -- - As a guest, I want to see a list of movies with the title, year released,
 --   MPAA rating, and studio information.
 -- - As a guest, I want to see the movies which a single studio has produced.
@@ -45,13 +43,38 @@
 --   Hint: It's not just a single table that contains everything in the 
 --   expected output. There are multiple real world entities and
 --   relationships including at least one many-to-many relationship.
+
 -- 2. Execution of the domain model (CREATE TABLE) - 4 points
 -- - Follow best practices for table and column names
 -- - Use correct data column types (i.e. TEXT/INTEGER)
 -- - Use of the `model_id` naming convention for foreign key columns
+DROP TABLE IF EXISTS Movies;
+
+CREATE TABLE Movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  Title TEXT,
+  Year TEXT,
+  MPAA Rating TEXT,
+  Studio TEXT
+);
+
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
 -- - It actually works, i.e. proper INSERT syntax
+
+INSERT INTO Movies (
+    "Title",
+    "Year",
+    "MPAA Rating",
+    "Studio"
+) VALUES (
+    "Batman Begins",
+    "2005",
+    "PG-13",
+    "Warner Bros."
+)
+
+
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
 --   sample output below - 1 for movies and 1 for cast. You will need
@@ -102,8 +125,10 @@
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
 
+
 -- Create new tables, according to your domain model
 -- TODO!
+
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary

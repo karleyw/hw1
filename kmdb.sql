@@ -48,9 +48,11 @@
 -- - Follow best practices for table and column names
 -- - Use correct data column types (i.e. TEXT/INTEGER)
 -- - Use of the `model_id` naming convention for foreign key columns
-DROP TABLE IF EXISTS Movies;
 
-CREATE TABLE Movies (
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS actors;
+
+CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   Title TEXT,
   Year TEXT,
@@ -58,11 +60,19 @@ CREATE TABLE Movies (
   Studio TEXT
 );
 
+CREATE TABLE actors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name TEXT,
+  last_name TEXT
+);
+
+
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
 -- - It actually works, i.e. proper INSERT syntax
 
-INSERT INTO Movies (
+-- Movies domain model
+INSERT INTO movies (
     "Title",
     "Year",
     "MPAA_Rating",
@@ -79,7 +89,21 @@ INSERT INTO Movies (
 (   "The Dark Knight Rises",
     "2012",
     "PG-13",
-    "Warner Bros.");
+    "Warner Bros."
+    );
+
+-- Actors domain model
+INSERT INTO actors (
+    "First_name",
+    "Last_name"
+) VALUES (
+    "Christian",
+    "Bale"
+), ("Michael",
+    "Caine"
+), ("Liam",
+    "Neeson");
+
 
 
 -- 4. "The report" (SELECT statements) - 6 points

@@ -17,9 +17,21 @@
 -- - As a guest, I want to see a list of movies with the title, year released,
 --   MPAA rating, and studio information.
 -- - As a guest, I want to see the movies which a single studio has produced.
+        -- SELECT studios.studio_name, movies.title
+        -- FROM studios
+        -- INNER join movies
+        -- ON studios.id = movies.studio_id;
 -- - As a guest, I want to see each movie's cast including each actor's
 --   name and the name of the character they portray.
 -- - As a guest, I want to see the movies which a single actor has acted in.
+        -- SELECT actors.actor_name, movies.title
+        -- FROM movies
+        -- INNER join troupe
+        -- ON movies.id = troupe.movie_id
+        -- INNER join actors
+        -- ON actors.id = troupe.actor_id
+        -- ORDER BY actors.actor_name ASC;
+
 -- * Note: The "guest" user role represents the experience prior to logging-in
 --   to an app and typically does not have a corresponding database table.
 
@@ -49,20 +61,18 @@
 -- - Use correct data column types (i.e. TEXT/INTEGER)
 -- - Use of the `model_id` naming convention for foreign key columns
 
--- Drop existing tables, so you'll start fresh each time this script is run.
+-- Drop existing tables to start fresh each time this script is run:
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS troupe;
 
-
--- Turns column mode on but headers off
+-- Turn column mode on, headers off:
 .mode column
 .headers off
 
--- Create new tables, according to your domain model
--- DOMAIN MODEL
+-- Create new tables according to domain model:
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
@@ -93,14 +103,7 @@ CREATE TABLE troupe (
     actor_id INTEGER
 );
 
--- 3. Insertion of data (INSERT statements) - 4 points
--- - Insert data into all the tables you've created
--- - It actually works, i.e. proper INSERT syntax
-
--- Insert data into your database that reflects the sample data shown above
--- Use hard-coded foreign key IDs when necessary
-
--- Movies data insertion
+-- Insert data into your database using hard-coded foreign key IDs when necessary:
 INSERT INTO movies (
     "title",
     "year",
@@ -123,13 +126,11 @@ INSERT INTO movies (
     1
 );
 
--- Studios data insertion
 INSERT INTO studios (
     "studio_name"
 ) VALUES (
     "Warner Bros.");
 
--- Characters data insertion
 INSERT INTO characters (
     "character_name"
 ) VALUES (
@@ -141,7 +142,7 @@ INSERT INTO characters (
     ("Joker"),
     ("Harvey Dent"),
     ("Bane"),
-    ("John Black"),
+    ("John Blake"),
     ("Selina Kyle");
 
 INSERT INTO actors (
@@ -159,33 +160,24 @@ VALUES
 (2, 1),(2, 6),(2, 7),(2,2),(2,8),
 (3, 1),(3, 5),(3, 9),(3, 10),(3, 11);
 
-
--- 4. "The report" (SELECT statements) - 6 points
--- - Write 2 `SELECT` statements to produce something similar to the
---   sample output below - 1 for movies and 1 for cast. You will need
---   to read data from multiple tables in each `SELECT` statement.
---   Formatting does not matter.
-
--- Prints a header for the movies output
+-- Print a header for the movies output:
 .print "Movies"
 .print "======"
 .print ""
 
--- The SQL statement for the movies output
--- TODO!
+-- The SQL statement for the movies output:
 SELECT movies.title, movies.year, movies.MPAA_rating, studios.studio_name
 FROM movies
 INNER JOIN studios
 ON movies.studio_id = studios.id;
 
--- Prints a header for the cast output
+-- Print a header for the cast output:
 .print ""
 .print "Top Cast"
 .print "========"
 .print ""
 
--- The SQL statement for the cast output (MOVIE    ACTOR    CHARACTER)
--- TODO!
+-- The SQL statement for the output (MOVIE    ACTOR    CHARACTER):
 SELECT movies.title, actors.actor_name, characters.character_name
 FROM movies
 INNER join troupe
@@ -194,6 +186,7 @@ INNER join actors
 ON actors.id = troupe.actor_id
 INNER join characters
 ON characters.id = actors.character_id;
+
 
 -- Submission
 -- 

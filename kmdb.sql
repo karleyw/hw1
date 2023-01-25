@@ -53,7 +53,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS studios;
-DROP TABLE IF EXISTS cast;
+DROP TABLE IF EXISTS showday;
 
 -- Turns column mode on but headers off
 .mode column
@@ -80,10 +80,16 @@ CREATE TABLE studios (
     studio_name TEXT
 );
 
-CREATE TABLE cast (
+-- CREATE TABLE cast (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     movie_id INTEGER,
+--     character_id INTEGER,
+-- );
+
+CREATE TABLE showday (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
-    character_id INTEGER
+    day_of_week TEXT,
 );
 
 
@@ -131,12 +137,19 @@ INSERT INTO characters (
     ("Alfred","Michael Caine"),
     ("Ra's Al Ghul","Liam Neeson");
 
+INSERT INTO showday (
+    movies_id,"day_of_week"
+) VALUES (
+    1,"Monday"),
+    (2,"Tuesday"),
+    (3,"Friday");
+
 -- Cast data insertion
-INSERT INTO cast (
-    movie_id, character_id
-) VALUES 
-(1, 1),(1, 2),(1, 3),
-(2, 1),(2, 2),(2, 3);
+-- INSERT INTO cast (movie_id, character_id, "word") 
+-- VALUES 
+-- (1, 1, "a"),(1, 2, "b"),(1, 3,"c"),
+-- (2, 1,"d"),(2, 2,"e"),(2, 3,"f");
+
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the

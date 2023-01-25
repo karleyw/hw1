@@ -128,7 +128,14 @@ INSERT INTO characters (
 ) VALUES (
     "Bruce Wayne","Christian Bale"),
     ("Alfred","Michael Caine"),
-    ("Ra's Al Ghul","Liam Neeson");
+    ("Ra's Al Ghul","Liam Neeson"),
+    ("Rachel Dawes","Katie Holmes"),
+    ("Commissioner Gordon","Gary Oldman"),
+    ("Joker","Heath Ledger"),
+    ("Harvey Dent","Aaron Eckhart"),
+    ("Bane","Tom Hardy"),
+    ("John Black","Joseph Gordon-Levitt"),
+    ("Selina Kyle","Anne Hathaway");
 
 
 -- Cast data insertion

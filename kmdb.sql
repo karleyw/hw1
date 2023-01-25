@@ -53,6 +53,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS characters;
 
 -- Turns column mode on but headers off
 .mode column
@@ -79,6 +80,12 @@ CREATE TABLE studios (
     name TEXT
 );
 
+CREATE TABLE characters (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    character_name TEXT,
+    actor_first_name TEXT,
+    actor_last_name TEXT
+);
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
@@ -125,7 +132,23 @@ INSERT INTO studios (
     "name"
 ) VALUES (
     "Warner Bros."
-)
+);
+
+-- Characters data insertion
+INSERT INTO characters (
+    "character_name",
+    "actor_first_name",
+    "actor_last_name"
+) VALUES (
+    "Bruce Wayne",
+    "Christian",
+    "Bale"
+), ("Alfred",
+    "Michael",
+    "Caine"
+), ("Ra's Al Ghul",
+    "Liam",
+    "Neeson");
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the

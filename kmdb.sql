@@ -72,7 +72,7 @@ CREATE TABLE movies (
 
 CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  actor_full_name TEXT,
+  actor_name TEXT,
   character_id INTEGER
 );
 
@@ -110,22 +110,28 @@ CREATE TABLE cast (
 INSERT INTO movies (
     "title",
     "year",
-    "MPAA_rating"
+    "MPAA_rating",
+    studio_id
 ) VALUES (
     "Batman Begins",
     "2005",
-    "PG-13"),
+    "PG-13",
+    1
+    ),
 (   "The Dark Knight",
     "2008",
-    "PG-13"),
+    "PG-13",
+    1
+    ),
 (   "The Dark Knight Rises",
     "2012",
-    "PG-13"
+    "PG-13",
+    1
     );
 
 -- Actors data insertion
 INSERT INTO actors (
-    "actor_full_name",
+    "actor_name",
     character_id
 ) VALUES (
     "Christian Bale", 1), ("Michael Caine", 2), ("Liam Neeson",3);
@@ -139,15 +145,12 @@ INSERT INTO studios (
 
 -- Characters data insertion
 INSERT INTO characters (
-    "character_name",
-    "actor_full_name"
+    "character_name"
 ) VALUES (
-    "Bruce Wayne",
-    "Christian Bale"
-), ("Alfred",
-    "Michael Caine"
-), ("Ra's Al Ghul",
-    "Liam Neeson");
+    "Bruce Wayne"
+), ("Alfred"
+), ("Ra's Al Ghul"
+);
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the

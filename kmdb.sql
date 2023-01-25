@@ -78,15 +78,20 @@ CREATE TABLE actors (
 
 CREATE TABLE studios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    studio_id INTEGER,
     studio_name TEXT
 );
 
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    character_id INTEGER,
+    -- character_id INTEGER,
     character_name TEXT,
     actor_full_name TEXT
+);
+
+CREATE TABLE mov_char_join (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER,
+    character_id INTEGER
 );
 
 -- 3. Insertion of data (INSERT statements) - 4 points
@@ -115,13 +120,14 @@ INSERT INTO movies (
 
 -- Actors data insertion
 INSERT INTO actors (
-    "actor_full_name"
+    "actor_full_name",
+    character_id
 ) VALUES (
-    "Christian Bale"), ("Michael Caine"), ("Liam Neeson");
+    "Christian Bale", 1), ("Michael Caine", 2), ("Liam Neeson",3);
 
 -- Studios data insertion
 INSERT INTO studios (
-    "name"
+    "studio_name"
 ) VALUES (
     "Warner Bros."
 );
@@ -163,10 +169,9 @@ SELECT * FROM movies;
 -- TODO!
 
 -- MOVIE    ACTOR    CHARACTER
-SELECT actor_full_name, character_name
-FROM characters
-INNER JOIN actors
-ON characters.actor_full_name = actors.character_id;
+-- SELECT actor_full_name, character_name
+-- FROM characters
+-- INNER JOIN actors ON characters.id = actors.character_id;
 
 -- Submission
 -- 

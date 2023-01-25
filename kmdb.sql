@@ -53,7 +53,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS studios;
-DROP TABLE IF EXISTS showday;
+DROP TABLE IF EXISTS cast;
 
 -- Turns column mode on but headers off
 .mode column
@@ -80,17 +80,11 @@ CREATE TABLE studios (
     studio_name TEXT
 );
 
-CREATE TABLE showtime (
+CREATE TABLE cast (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    day TEXT,
-    movie_id INTEGER
+    movie_id INTEGER,
+    character_id INTEGER
 );
-
--- CREATE TABLE cast (
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     movie_id INTEGER,
---     character_id INTEGER
--- );
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created

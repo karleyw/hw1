@@ -52,8 +52,10 @@
 -- Drop existing tables, so you'll start fresh each time this script is run.
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS troupe;
+
 
 -- Turns column mode on but headers off
 .mode column
@@ -143,21 +145,19 @@ INSERT INTO characters (
     ("Selina Kyle");
 
 INSERT INTO actors (
-    "actor_name", character_id
-) VALUES (
+    "actor_name", character_id) VALUES (
     "Christian Bale", 1), ("Michael Caine", 2),
     ("Liam Neeson", 3), ("Katie Holmes", 4),
     ("Gary Oldman", 5), ("Heath Ledger",6),
-    ("Aaron Eckhart",7), ("Maggie Gyllenhaal",8),
-    ("Tom Hardy",9), ("Joseph Gordon-Levitt",10),
-    ("Anne Hathway",11);
+    ("Aaron Eckhart",7), ("Maggie Gyllenhaal",4),
+    ("Tom Hardy",8), ("Joseph Gordon-Levitt",9),
+    ("Anne Hathway",10);
 
-
--- Cast data insertion
 INSERT INTO troupe (movie_id, actor_id) 
 VALUES 
 (1, 1),(1, 2),(1, 3),(1,4),(1,5),
-(2, 1),(2, 6),(2, 7),(2,2),(2,);
+(2, 1),(2, 6),(2, 7),(2,2),(2,8),
+(3, 1),(3, 5),(3, 9),(3, 10),(3, 11);
 
 
 -- 4. "The report" (SELECT statements) - 6 points
@@ -186,12 +186,14 @@ ON movies.studio_id = studios.id;
 
 -- The SQL statement for the cast output (MOVIE    ACTOR    CHARACTER)
 -- TODO!
-SELECT movies.title, characters.actor_name, characters.character_name
+SELECT movies.title, actors.actor_name
 FROM movies
 INNER JOIN troupe
 ON movies.id = troupe.movie_id
-INNER join characters
-ON characters.id = troupe.character_id;
+INNER join actors
+ON actors.id = troupe.actor_id;
+-- INNER join characters
+-- ON characters.id = actors.character_id;
 
 -- Submission
 -- 

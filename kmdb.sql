@@ -49,15 +49,23 @@
 -- - Use correct data column types (i.e. TEXT/INTEGER)
 -- - Use of the `model_id` naming convention for foreign key columns
 
+-- Drop existing tables, so you'll start fresh each time this script is run.
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS studios;
 
+-- Turns column mode on but headers off
+.mode column
+.headers off
+
+-- Create new tables, according to your domain model
+-- DOMAIN MODEL
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  Title TEXT,
-  Year TEXT,
-  MPAA_Rating TEXT,
-  Studio TEXT
+  title TEXT,
+  year TEXT,
+  MPAA_rating TEXT,
+  studio TEXT
 );
 
 CREATE TABLE actors (
@@ -66,17 +74,25 @@ CREATE TABLE actors (
   last_name TEXT
 );
 
+CREATE TABLE studios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
 -- - It actually works, i.e. proper INSERT syntax
 
--- Movies domain model
+-- Insert data into your database that reflects the sample data shown above
+-- Use hard-coded foreign key IDs when necessary
+
+-- Movies data insertion
 INSERT INTO movies (
-    "Title",
-    "Year",
-    "MPAA_Rating",
-    "Studio"
+    "title",
+    "year",
+    "MPAA_rating",
+    "studio"
 ) VALUES (
     "Batman Begins",
     "2005",
@@ -92,10 +108,10 @@ INSERT INTO movies (
     "Warner Bros."
     );
 
--- Actors domain model
+-- Actors data insertion
 INSERT INTO actors (
-    "First_name",
-    "Last_name"
+    "first_name",
+    "last_name"
 ) VALUES (
     "Christian",
     "Bale"
@@ -104,13 +120,39 @@ INSERT INTO actors (
 ), ("Liam",
     "Neeson");
 
-
+-- Studios data insertion
+INSERT INTO studios (
+    "name"
+) VALUES (
+    "Warner Bros."
+)
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
 --   sample output below - 1 for movies and 1 for cast. You will need
 --   to read data from multiple tables in each `SELECT` statement.
 --   Formatting does not matter.
+
+-- Prints a header for the movies output
+.print "Movies"
+.print "======"
+.print ""
+
+-- The SQL statement for the movies output
+-- TODO!
+
+-- Prints a header for the cast output
+.print ""
+.print "Top Cast"
+.print "========"
+.print ""
+
+
+-- The SQL statement for the cast output
+-- TODO!
+
+
+
 
 -- Submission
 -- 
@@ -148,37 +190,3 @@ INSERT INTO actors (
 -- The Dark Knight Rises  Tom Hardy             Bane
 -- The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
 -- The Dark Knight Rises  Anne Hathaway         Selina Kyle
-
--- Turns column mode on but headers off
-.mode column
-.headers off
-
--- Drop existing tables, so you'll start fresh each time this script is run.
--- TODO!
-
-
--- Create new tables, according to your domain model
--- TODO!
-
-
--- Insert data into your database that reflects the sample data shown above
--- Use hard-coded foreign key IDs when necessary
--- TODO!
-
--- Prints a header for the movies output
-.print "Movies"
-.print "======"
-.print ""
-
--- The SQL statement for the movies output
--- TODO!
-
--- Prints a header for the cast output
-.print ""
-.print "Top Cast"
-.print "========"
-.print ""
-
-
--- The SQL statement for the cast output
--- TODO!

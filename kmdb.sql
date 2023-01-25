@@ -53,7 +53,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS studios;
-DROP TABLE IF EXISTS cast;
+DROP TABLE IF EXISTS troupe;
 
 -- Turns column mode on but headers off
 .mode column
@@ -80,7 +80,7 @@ CREATE TABLE studios (
     studio_name TEXT
 );
 
-CREATE TABLE cast (
+CREATE TABLE troupe (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
     character_id INTEGER
@@ -132,10 +132,10 @@ INSERT INTO characters (
 
 
 -- Cast data insertion
--- INSERT INTO cast (movie_id, character_id, "word") 
--- VALUES 
--- (1, 1, "a"),(1, 2, "b"),(1, 3,"c"),
--- (2, 1,"d"),(2, 2,"e"),(2, 3,"f");
+INSERT INTO troupe (movie_id, character_id) 
+VALUES 
+(1, 1),(1, 2),(1, 3),
+(2, 1),(2, 2),(2, 3);
 
 
 -- 4. "The report" (SELECT statements) - 6 points
@@ -164,7 +164,12 @@ ON movies.studio_id = studios.id;
 
 -- The SQL statement for the cast output (MOVIE    ACTOR    CHARACTER)
 -- TODO!
-
+SELECT movies.title, characters.actor_name, characters.character_name
+FROM movies
+INNER JOIN troupe
+ON movies.id = troupe.movie_id
+INNER join characters
+ON characters.id = troupe.character_id;
 
 -- Submission
 -- 

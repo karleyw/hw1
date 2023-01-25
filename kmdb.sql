@@ -132,7 +132,11 @@ INSERT INTO characters (
     ("Ra's Al Ghul","Liam Neeson");
 
 -- Cast data insertion
-
+INSERT INTO cast (
+    movie_id, character_id
+) VALUES 
+(1, 1),(1, 2),(1, 3),
+(2, 1),(2, 2),(2, 3);
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
@@ -158,14 +162,9 @@ ON movies.studio_id = studios.id;
 .print "========"
 .print ""
 
--- The SQL statement for the cast output
+-- The SQL statement for the cast output (MOVIE    ACTOR    CHARACTER)
 -- TODO!
 
-
--- MOVIE    ACTOR    CHARACTER
--- SELECT actor_full_name, character_name
--- FROM characters
--- INNER JOIN actors ON characters.id = actors.character_id;
 
 -- Submission
 -- 

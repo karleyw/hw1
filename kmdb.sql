@@ -51,9 +51,8 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS actors;
-DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS cast;
 
 -- Turns column mode on but headers off
@@ -70,10 +69,10 @@ CREATE TABLE movies (
   studio_id INTEGER
 );
 
-CREATE TABLE actors (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  actor_name TEXT,
-  character_id INTEGER
+CREATE TABLE characters (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    character_name TEXT,
+    actor_name TEXT
 );
 
 CREATE TABLE studios (
@@ -81,16 +80,10 @@ CREATE TABLE studios (
     studio_name TEXT
 );
 
-CREATE TABLE characters (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    character_name TEXT,
-    actor_id INTEGER
-);
-
 CREATE TABLE cast (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    actor_id INTEGER,
-    charactor_id INTEGER
+    movie_id INTEGER,
+    character_id INTEGER
 );
 
 
@@ -124,17 +117,6 @@ INSERT INTO movies (
     1
 );
 
-INSERT INTO movies(studio_id)
-SELECT studio_name
-FROM studios;
-
--- Actors data insertion
-INSERT INTO actors (
-    "actor_name",
-    character_id
-) VALUES (
-    "Christian Bale", 1), ("Michael Caine", 2), ("Liam Neeson",3);
-
 -- Studios data insertion
 INSERT INTO studios (
     "studio_name"
@@ -143,15 +125,14 @@ INSERT INTO studios (
 
 -- Characters data insertion
 INSERT INTO characters (
-    "character_name"
+    "character_name", "actor_name"
 ) VALUES (
-    "Bruce Wayne"), 
-    ("Alfred"),
-    ("Ra's Al Ghul"),
-    ("Rachel Dawes"),
-    ("Commissioner Gordon"),
-    ("Joker"),
-    ("Harvey Dent");
+    "Bruce Wayne","Christian Bale"),
+    ("Alfred","Michael Caine"),
+    ("Ra's Al Ghul","Liam Neeson");
+
+-- Cast data insertion
+
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
@@ -166,8 +147,6 @@ INSERT INTO characters (
 
 -- The SQL statement for the movies output
 -- TODO!
--- SELECT * FROM movies;
-
 SELECT movies.title, movies.year, movies.MPAA_rating, studios.studio_name
 FROM movies
 INNER JOIN studios
@@ -179,15 +158,9 @@ ON movies.studio_id = studios.id;
 .print "========"
 .print ""
 
-SELECT actors.actor_name, characters.character_name
-FROM actors
-INNER JOIN characters
-ON actors.character_id = characters.id;
-
-
-
 -- The SQL statement for the cast output
 -- TODO!
+
 
 -- MOVIE    ACTOR    CHARACTER
 -- SELECT actor_full_name, character_name

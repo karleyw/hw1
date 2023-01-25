@@ -54,6 +54,7 @@ DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS cast;
 
 -- Turns column mode on but headers off
 .mode column
@@ -63,7 +64,6 @@ DROP TABLE IF EXISTS characters;
 -- DOMAIN MODEL
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  movie_id INTEGER,
   title TEXT,
   year TEXT,
   MPAA_rating TEXT,
@@ -83,16 +83,21 @@ CREATE TABLE studios (
 
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    -- character_id INTEGER,
     character_name TEXT,
-    actor_full_name TEXT
+    actor_id INTEGER
 );
 
-CREATE TABLE mov_char_join (
+CREATE TABLE cast (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    movie_id INTEGER,
-    character_id INTEGER
+    actor_id INTEGER,
+    charactor_id INTEGER
 );
+
+-- CREATE TABLE mov_char_join (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     movieid INTEGER,
+--     characterid INTEGER
+-- );
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created

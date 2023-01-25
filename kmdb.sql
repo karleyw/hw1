@@ -93,11 +93,6 @@ CREATE TABLE cast (
     charactor_id INTEGER
 );
 
--- CREATE TABLE mov_char_join (
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     movieid INTEGER,
---     characterid INTEGER
--- );
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
@@ -127,7 +122,11 @@ INSERT INTO movies (
     "2012",
     "PG-13",
     1
-    );
+);
+
+INSERT INTO movies(studio_id)
+SELECT studio_name
+FROM studios;
 
 -- Actors data insertion
 INSERT INTO actors (
@@ -165,7 +164,12 @@ INSERT INTO characters (
 
 -- The SQL statement for the movies output
 -- TODO!
-SELECT * FROM movies;
+-- SELECT * FROM movies;
+
+SELECT movies.title, movies.year, movies.MPAA_rating, studios.studio_name
+FROM movies
+INNER JOIN studios
+ON movies.studio_id = studios.id;
 
 -- Prints a header for the cast output
 .print ""

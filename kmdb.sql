@@ -139,17 +139,19 @@ INSERT INTO actors (
 INSERT INTO studios (
     "studio_name"
 ) VALUES (
-    "Warner Bros."
-);
+    "Warner Bros.");
 
 -- Characters data insertion
 INSERT INTO characters (
     "character_name"
 ) VALUES (
-    "Bruce Wayne"
-), ("Alfred"
-), ("Ra's Al Ghul"
-);
+    "Bruce Wayne"), 
+    ("Alfred"),
+    ("Ra's Al Ghul"),
+    ("Rachel Dawes"),
+    ("Commissioner Gordon"),
+    ("Joker"),
+    ("Harvey Dent");
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
@@ -176,6 +178,13 @@ ON movies.studio_id = studios.id;
 .print "Top Cast"
 .print "========"
 .print ""
+
+SELECT actors.actor_name, characters.character_name
+FROM actors
+INNER JOIN characters
+ON actors.character_id = characters.id;
+
+
 
 -- The SQL statement for the cast output
 -- TODO!

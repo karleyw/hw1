@@ -71,8 +71,13 @@ CREATE TABLE movies (
 
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    character_name TEXT,
-    actor_name TEXT
+    character_name TEXT
+);
+
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_name TEXT,
+    character_id INTEGER
 );
 
 CREATE TABLE studios (
@@ -83,7 +88,7 @@ CREATE TABLE studios (
 CREATE TABLE troupe (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
-    character_id INTEGER
+    actor_id INTEGER
 );
 
 -- 3. Insertion of data (INSERT statements) - 4 points
@@ -124,25 +129,35 @@ INSERT INTO studios (
 
 -- Characters data insertion
 INSERT INTO characters (
-    "character_name", "actor_name"
+    "character_name"
 ) VALUES (
-    "Bruce Wayne","Christian Bale"),
-    ("Alfred","Michael Caine"),
-    ("Ra's Al Ghul","Liam Neeson"),
-    ("Rachel Dawes","Katie Holmes"),
-    ("Commissioner Gordon","Gary Oldman"),
-    ("Joker","Heath Ledger"),
-    ("Harvey Dent","Aaron Eckhart"),
-    ("Bane","Tom Hardy"),
-    ("John Black","Joseph Gordon-Levitt"),
-    ("Selina Kyle","Anne Hathaway");
+    "Bruce Wayne"),
+    ("Alfred"),
+    ("Ra's Al Ghul"),
+    ("Rachel Dawes"),
+    ("Commissioner Gordon"),
+    ("Joker"),
+    ("Harvey Dent"),
+    ("Bane"),
+    ("John Black"),
+    ("Selina Kyle");
+
+INSERT INTO actors (
+    "actor_name", character_id
+) VALUES (
+    "Christian Bale", 1), ("Michael Caine", 2),
+    ("Liam Neeson", 3), ("Katie Holmes", 4),
+    ("Gary Oldman", 5), ("Heath Ledger",6),
+    ("Aaron Eckhart",7), ("Maggie Gyllenhaal",8),
+    ("Tom Hardy",9), ("Joseph Gordon-Levitt",10),
+    ("Anne Hathway",11);
 
 
 -- Cast data insertion
-INSERT INTO troupe (movie_id, character_id) 
+INSERT INTO troupe (movie_id, actor_id) 
 VALUES 
-(1, 1),(1, 2),(1, 3),
-(2, 1),(2, 2),(2, 3);
+(1, 1),(1, 2),(1, 3),(1,4),(1,5),
+(2, 1),(2, 6),(2, 7),(2,2),(2,);
 
 
 -- 4. "The report" (SELECT statements) - 6 points

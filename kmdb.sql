@@ -80,18 +80,17 @@ CREATE TABLE studios (
     studio_name TEXT
 );
 
+CREATE TABLE showtime (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    day TEXT,
+    movie_id INTEGER
+);
+
 -- CREATE TABLE cast (
 --     id INTEGER PRIMARY KEY AUTOINCREMENT,
 --     movie_id INTEGER,
---     character_id INTEGER,
+--     character_id INTEGER
 -- );
-
-CREATE TABLE showday (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    movie_id INTEGER,
-    day_of_week TEXT,
-);
-
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
@@ -137,12 +136,6 @@ INSERT INTO characters (
     ("Alfred","Michael Caine"),
     ("Ra's Al Ghul","Liam Neeson");
 
-INSERT INTO showday (
-    movies_id,"day_of_week"
-) VALUES (
-    1,"Monday"),
-    (2,"Tuesday"),
-    (3,"Friday");
 
 -- Cast data insertion
 -- INSERT INTO cast (movie_id, character_id, "word") 

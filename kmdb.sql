@@ -71,8 +71,7 @@ CREATE TABLE movies (
 
 CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  first_name TEXT,
-  last_name TEXT
+  actor_full_name TEXT
 );
 
 CREATE TABLE studios (
@@ -83,8 +82,7 @@ CREATE TABLE studios (
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     character_name TEXT,
-    actor_first_name TEXT,
-    actor_last_name TEXT
+    actor_full_name TEXT
 );
 
 -- 3. Insertion of data (INSERT statements) - 4 points
@@ -117,15 +115,11 @@ INSERT INTO movies (
 
 -- Actors data insertion
 INSERT INTO actors (
-    "first_name",
-    "last_name"
+    "actor_full_name"
 ) VALUES (
-    "Christian",
-    "Bale"
-), ("Michael",
-    "Caine"
-), ("Liam",
-    "Neeson");
+    "Christian Bale"
+), ("Michael Caine"
+), ("Liam Neeson");
 
 -- Studios data insertion
 INSERT INTO studios (
@@ -137,18 +131,14 @@ INSERT INTO studios (
 -- Characters data insertion
 INSERT INTO characters (
     "character_name",
-    "actor_first_name",
-    "actor_last_name"
+    "actor_full_name"
 ) VALUES (
     "Bruce Wayne",
-    "Christian",
-    "Bale"
+    "Christian Bale"
 ), ("Alfred",
-    "Michael",
-    "Caine"
+    "Michael Caine"
 ), ("Ra's Al Ghul",
-    "Liam",
-    "Neeson");
+    "Liam Neeson");
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
@@ -163,6 +153,7 @@ INSERT INTO characters (
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT * FROM movies;
 
 -- Prints a header for the cast output
 .print ""
@@ -170,6 +161,11 @@ INSERT INTO characters (
 .print "========"
 .print ""
 
+-- MOVIE    ACTOR    CHARACTER
+SELECT actor_full_name, character_name
+FROM characters
+INNER JOIN actors
+ON characters.actor_full_name = actors.actor_full_name;
 
 -- The SQL statement for the cast output
 -- TODO!
